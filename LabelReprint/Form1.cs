@@ -63,6 +63,7 @@ namespace LabelReprint
                 }
                 else
                 {
+                    //default label printer
                     printer = "ZDesigner S4M-203dpi ZPL";
                 }
                 //Printing(printer);
@@ -112,39 +113,57 @@ namespace LabelReprint
                 // In PDF we use user unit as the measurement, 1 cm = 28.34 user units. So to create a 27 cm by 4 cm page we need below sizes.
                 var pgSize = new iTextSharp.text.Rectangle(765, 113);
                 Document pdfdoc = new Document(pgSize); // Setting the page size for the PDF
-
-                PdfWriter writer = PdfWriter.GetInstance(pdfdoc, new FileStream(path + "/Sample.pdf", FileMode.Create)); //Using the PDF Writer class to generate the PDF
+                PdfWriter writer = PdfWriter.GetInstance(pdfdoc, new FileStream(path + "/" + createPDFColorList.Text + ".pdf", FileMode.Create)); //Using the PDF Writer class to generate the PDF
                 pdfdoc.Open(); // Opening the PDF to write the data from the textbox
 
-
                 CodeQrBarcodeDraw QRcode = BarcodeDrawFactory.CodeQr; // to generate QR code
-                System.Drawing.Image QRcodeImage = QRcode.Draw(createPDFText.Text, 100);
+                System.Drawing.Image QRcodeImage = QRcode.Draw(createPDFNameText.Text + " / " + createPDFColorList.Text, 100);
                 iTextSharp.text.Image pic = iTextSharp.text.Image.GetInstance(QRcodeImage, System.Drawing.Imaging.ImageFormat.Jpeg);
                 pic.ScaleAbsolute(70, 70);
-                pic.SetAbsolutePosition(50F, 20F);
+                pic.SetAbsolutePosition(30F, 20F);
 
                 pdfdoc.Add(pic);
                 PdfContentByte cb = writer.DirectContent;
                 // we tell the ContentByte we're ready to draw text
                 cb.BeginText();
+
+                // set up Font and Size for Content to be shown in PDF
                 BaseFont mybf = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
                 cb.SetFontAndSize(mybf, 50);
 
                 // we draw some text on a certain position
-                cb.SetTextMatrix(160, 40);
-                cb.ShowText(createPDFText.Text);
+                cb.SetTextMatrix(120, 60);
+                cb.ShowText(createPDFColorList.Text);
+
+
+                cb.SetFontAndSize(mybf, 40);
+                cb.SetTextMatrix(300, 20);
+                cb.ShowText(createPDFNameText.Text);
                 // we tell the contentByte, we've finished drawing text
                 cb.EndText();
+                iTextSharp.text.Rectangle pageBorderRect = new iTextSharp.text.Rectangle(pgSize);
 
-                //pdfdoc.Add(new Paragraph(createPDFText.Text)); // Adding the Text to the PDF
+                pageBorderRect.Left += (pdfdoc.LeftMargin - 26);
+                pageBorderRect.Right -= (pdfdoc.RightMargin - 26);
+                pageBorderRect.Top -= (pdfdoc.TopMargin - 26);
+                pageBorderRect.Bottom += (pdfdoc.BottomMargin - 26);
+                pageBorderRect.BorderWidth = 6;
 
+                cb.SetColorStroke(BaseColor.GRAY);
+                cb.Rectangle(pageBorderRect.Left, pageBorderRect.Bottom, pageBorderRect.Width, pageBorderRect.Height);
+                cb.Stroke();
                 pdfdoc.Close();
+
                 //MessageBox.Show("PDF Generation Successfull");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }

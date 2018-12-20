@@ -1,4 +1,6 @@
-﻿namespace LabelReprint
+﻿using System.Windows.Forms;
+
+namespace LabelReprint
 {
     partial class LabelPrinter
     {
@@ -37,9 +39,11 @@
             this.ErrMsg = new System.Windows.Forms.Label();
             this.otherPrinterNameLabel = new System.Windows.Forms.Label();
             this.otherPrinterName = new System.Windows.Forms.TextBox();
-            this.createPDFText = new System.Windows.Forms.TextBox();
             this.createPDFButton = new System.Windows.Forms.Button();
-            this.createPDFLabel = new System.Windows.Forms.Label();
+            this.createPDFColor = new System.Windows.Forms.Label();
+            this.createPDFName = new System.Windows.Forms.Label();
+            this.createPDFNameText = new System.Windows.Forms.TextBox();
+            this.createPDFColorList = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // printPreviewDialog1
@@ -109,16 +113,9 @@
             this.otherPrinterName.Size = new System.Drawing.Size(100, 20);
             this.otherPrinterName.TabIndex = 5;
             // 
-            // createPDFText
-            // 
-            this.createPDFText.Location = new System.Drawing.Point(12, 159);
-            this.createPDFText.Name = "createPDFText";
-            this.createPDFText.Size = new System.Drawing.Size(100, 20);
-            this.createPDFText.TabIndex = 6;
-            // 
             // createPDFButton
             // 
-            this.createPDFButton.Location = new System.Drawing.Point(140, 146);
+            this.createPDFButton.Location = new System.Drawing.Point(118, 155);
             this.createPDFButton.Name = "createPDFButton";
             this.createPDFButton.Size = new System.Drawing.Size(100, 45);
             this.createPDFButton.TabIndex = 7;
@@ -126,23 +123,84 @@
             this.createPDFButton.UseVisualStyleBackColor = true;
             this.createPDFButton.Click += new System.EventHandler(this.createPDFButton_Click);
             // 
-            // createPDFLabel
+            // createPDFColor
             // 
-            this.createPDFLabel.AutoSize = true;
-            this.createPDFLabel.Location = new System.Drawing.Point(9, 143);
-            this.createPDFLabel.Name = "createPDFLabel";
-            this.createPDFLabel.Size = new System.Drawing.Size(125, 13);
-            this.createPDFLabel.TabIndex = 8;
-            this.createPDFLabel.Text = "Enter Text to create PDF";
+            this.createPDFColor.AutoSize = true;
+            this.createPDFColor.Location = new System.Drawing.Point(9, 187);
+            this.createPDFColor.Name = "createPDFColor";
+            this.createPDFColor.Size = new System.Drawing.Size(59, 13);
+            this.createPDFColor.TabIndex = 8;
+            this.createPDFColor.Text = "Enter Color";
+            // 
+            // createPDFName
+            // 
+            this.createPDFName.AutoSize = true;
+            this.createPDFName.Location = new System.Drawing.Point(9, 148);
+            this.createPDFName.Name = "createPDFName";
+            this.createPDFName.Size = new System.Drawing.Size(63, 13);
+            this.createPDFName.TabIndex = 9;
+            this.createPDFName.Text = "Enter Name";
+            // 
+            // createPDFNameText
+            // 
+            this.createPDFNameText.Location = new System.Drawing.Point(12, 164);
+            this.createPDFNameText.Name = "createPDFNameText";
+            this.createPDFNameText.ShortcutsEnabled = false;
+            this.createPDFNameText.Size = new System.Drawing.Size(100, 20);
+            this.createPDFNameText.TabIndex = 10;
+            this.createPDFNameText.Text = "SMART POST";
+            // 
+            // createPDFColorList
+            // 
+            this.createPDFColorList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.createPDFColorList.FormattingEnabled = true;
+            this.createPDFColorList.IntegralHeight = false;
+            this.createPDFColorList.Items.AddRange(new object[] {
+            "ARMOUR GREY 300MM",
+            "BEIGE 300MM",
+            "BIRCH 300MM",
+            "BLACK 300MM",
+            "BLUE ROCK 300MM",
+            "BOWRAL BROWN 300MM",
+            "CAULFIELD GREEN 300MM",
+            "COKE 300MM",
+            "GALVANISED 300MM",
+            "GREY STONE 300MM",
+            "GULL GREY 300MM",
+            "GUN METAL GREEN 300MM",
+            "HERITAGE RED 300MM",
+            "IRONBARK 300MM",
+            "MERINO 300MM",
+            "MOCCA 300MM",
+            "MOSS VALE SAND 300MM",
+            "MOUNTAIN BLUE 300MM",
+            "OCEAN GREEN 300MM",
+            "OFF WHITE 300MM",
+            "PICTON GREEN 300MM",
+            "PRIMROSE 300MM",
+            "RIVERGUM 300MM",
+            "SLATE GREY 300MM",
+            "SMOOTH CREAM 300MM",
+            "WEATHERED COPPER 300MM",
+            "WHEAT 300MM"});
+            this.createPDFColorList.Location = new System.Drawing.Point(12, 203);
+            this.createPDFColorList.MaxDropDownItems = 50;
+            this.createPDFColorList.Name = "createPDFColorList";
+            this.createPDFColorList.Size = new System.Drawing.Size(136, 21);
+            this.createPDFColorList.Sorted = true;
+            this.createPDFColorList.TabIndex = 0;
+            this.createPDFColorList.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // LabelPrinter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(538, 257);
-            this.Controls.Add(this.createPDFLabel);
+            this.Controls.Add(this.createPDFColorList);
+            this.Controls.Add(this.createPDFNameText);
+            this.Controls.Add(this.createPDFName);
+            this.Controls.Add(this.createPDFColor);
             this.Controls.Add(this.createPDFButton);
-            this.Controls.Add(this.createPDFText);
             this.Controls.Add(this.otherPrinterName);
             this.Controls.Add(this.otherPrinterNameLabel);
             this.Controls.Add(this.ErrMsg);
@@ -166,9 +224,11 @@
         private System.Windows.Forms.Label ErrMsg;
         private System.Windows.Forms.Label otherPrinterNameLabel;
         private System.Windows.Forms.TextBox otherPrinterName;
-        private System.Windows.Forms.TextBox createPDFText;
         private System.Windows.Forms.Button createPDFButton;
-        private System.Windows.Forms.Label createPDFLabel;
+        private System.Windows.Forms.Label createPDFColor;
+        private System.Windows.Forms.Label createPDFName;
+        private System.Windows.Forms.TextBox createPDFNameText;
+        private System.Windows.Forms.ComboBox createPDFColorList;
     }
 }
 
