@@ -44,6 +44,13 @@ namespace LabelReprint
             this.createPDFName = new System.Windows.Forms.Label();
             this.createPDFNameText = new System.Windows.Forms.TextBox();
             this.createPDFColorList = new System.Windows.Forms.ComboBox();
+            this.sizeText = new System.Windows.Forms.TextBox();
+            this.SizeLabel = new System.Windows.Forms.Label();
+            this.CreatePDFButtonForRackLocation = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.CreatePDFLabel = new System.Windows.Forms.Label();
+            this.MasterCoilPDFLabel = new System.Windows.Forms.Label();
+            this.CreateMasterCoilPDFButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // printPreviewDialog1
@@ -56,7 +63,6 @@ namespace LabelReprint
             this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
-            this.printPreviewDialog1.Load += new System.EventHandler(this.printPreviewDialog1_Load);
             // 
             // printDocument1
             // 
@@ -115,7 +121,7 @@ namespace LabelReprint
             // 
             // createPDFButton
             // 
-            this.createPDFButton.Location = new System.Drawing.Point(118, 155);
+            this.createPDFButton.Location = new System.Drawing.Point(118, 127);
             this.createPDFButton.Name = "createPDFButton";
             this.createPDFButton.Size = new System.Drawing.Size(100, 45);
             this.createPDFButton.TabIndex = 7;
@@ -126,7 +132,7 @@ namespace LabelReprint
             // createPDFColor
             // 
             this.createPDFColor.AutoSize = true;
-            this.createPDFColor.Location = new System.Drawing.Point(9, 187);
+            this.createPDFColor.Location = new System.Drawing.Point(9, 166);
             this.createPDFColor.Name = "createPDFColor";
             this.createPDFColor.Size = new System.Drawing.Size(59, 13);
             this.createPDFColor.TabIndex = 8;
@@ -135,7 +141,7 @@ namespace LabelReprint
             // createPDFName
             // 
             this.createPDFName.AutoSize = true;
-            this.createPDFName.Location = new System.Drawing.Point(9, 148);
+            this.createPDFName.Location = new System.Drawing.Point(9, 127);
             this.createPDFName.Name = "createPDFName";
             this.createPDFName.Size = new System.Drawing.Size(63, 13);
             this.createPDFName.TabIndex = 9;
@@ -143,12 +149,12 @@ namespace LabelReprint
             // 
             // createPDFNameText
             // 
-            this.createPDFNameText.Location = new System.Drawing.Point(12, 164);
+            this.createPDFNameText.Location = new System.Drawing.Point(12, 143);
             this.createPDFNameText.Name = "createPDFNameText";
             this.createPDFNameText.ShortcutsEnabled = false;
             this.createPDFNameText.Size = new System.Drawing.Size(100, 20);
             this.createPDFNameText.TabIndex = 10;
-            this.createPDFNameText.Text = "SMART POST";
+            this.createPDFNameText.Text = "SMARTPOSTS";
             // 
             // createPDFColorList
             // 
@@ -156,46 +162,107 @@ namespace LabelReprint
             this.createPDFColorList.FormattingEnabled = true;
             this.createPDFColorList.IntegralHeight = false;
             this.createPDFColorList.Items.AddRange(new object[] {
-            "ARMOUR GREY 300MM",
-            "BEIGE 300MM",
-            "BIRCH 300MM",
-            "BLACK 300MM",
-            "BLUE ROCK 300MM",
-            "BOWRAL BROWN 300MM",
-            "CAULFIELD GREEN 300MM",
-            "COKE 300MM",
-            "GALVANISED 300MM",
-            "GREY STONE 300MM",
-            "GULL GREY 300MM",
-            "GUN METAL GREEN 300MM",
-            "HERITAGE RED 300MM",
-            "IRONBARK 300MM",
-            "MERINO 300MM",
-            "MOCCA 300MM",
-            "MOSS VALE SAND 300MM",
-            "MOUNTAIN BLUE 300MM",
-            "OCEAN GREEN 300MM",
-            "OFF WHITE 300MM",
-            "PICTON GREEN 300MM",
-            "PRIMROSE 300MM",
-            "RIVERGUM 300MM",
-            "SLATE GREY 300MM",
-            "SMOOTH CREAM 300MM",
-            "WEATHERED COPPER 300MM",
-            "WHEAT 300MM"});
-            this.createPDFColorList.Location = new System.Drawing.Point(12, 203);
+            "ARMOUR GREY",
+            "BEIGE",
+            "BIRCH",
+            "BLACK",
+            "BLUE ROCK",
+            "BOWRAL BROWN",
+            "CAULFIELD GREEN",
+            "COKE",
+            "GALVANISED",
+            "GREY STONE",
+            "GULL GREY",
+            "GUN METAL GREEN",
+            "HERITAGE RED",
+            "IRONBARK",
+            "MERINO",
+            "MOCCA",
+            "MOSS VALE SAND",
+            "MOUNTAIN BLUE",
+            "OCEAN GREEN",
+            "OFF WHITE",
+            "PICTON GREEN",
+            "PRIMROSE",
+            "RIVERGUM",
+            "SLATE GREY",
+            "SMOOTH CREAM",
+            "WEATHERED COPPER",
+            "WHEAT",
+            "WHEAT"});
+            this.createPDFColorList.Location = new System.Drawing.Point(16, 182);
             this.createPDFColorList.MaxDropDownItems = 50;
             this.createPDFColorList.Name = "createPDFColorList";
             this.createPDFColorList.Size = new System.Drawing.Size(136, 21);
             this.createPDFColorList.Sorted = true;
             this.createPDFColorList.TabIndex = 0;
-            this.createPDFColorList.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // sizeText
+            // 
+            this.sizeText.Location = new System.Drawing.Point(12, 225);
+            this.sizeText.Name = "sizeText";
+            this.sizeText.Size = new System.Drawing.Size(100, 20);
+            this.sizeText.TabIndex = 11;
+            this.sizeText.Text = "300";
+            // 
+            // SizeLabel
+            // 
+            this.SizeLabel.AutoSize = true;
+            this.SizeLabel.Location = new System.Drawing.Point(13, 206);
+            this.SizeLabel.Name = "SizeLabel";
+            this.SizeLabel.Size = new System.Drawing.Size(27, 13);
+            this.SizeLabel.TabIndex = 12;
+            this.SizeLabel.Text = "Size";
+            // 
+            // CreatePDFButtonForRackLocation
+            // 
+            this.CreatePDFButtonForRackLocation.Location = new System.Drawing.Point(309, 146);
+            this.CreatePDFButtonForRackLocation.Name = "CreatePDFButtonForRackLocation";
+            this.CreatePDFButtonForRackLocation.Size = new System.Drawing.Size(100, 52);
+            this.CreatePDFButtonForRackLocation.TabIndex = 13;
+            this.CreatePDFButtonForRackLocation.Text = "Create PDF";
+            this.CreatePDFButtonForRackLocation.UseVisualStyleBackColor = true;
+            this.CreatePDFButtonForRackLocation.Click += new System.EventHandler(this.CreatePDFButtonForRackLocation_Click);
+            // 
+            // CreatePDFLabel
+            // 
+            this.CreatePDFLabel.AutoSize = true;
+            this.CreatePDFLabel.Location = new System.Drawing.Point(306, 127);
+            this.CreatePDFLabel.Name = "CreatePDFLabel";
+            this.CreatePDFLabel.Size = new System.Drawing.Size(162, 13);
+            this.CreatePDFLabel.TabIndex = 14;
+            this.CreatePDFLabel.Text = "Generate PDF files for Tray 1-20:";
+            // 
+            // MasterCoilPDFLabel
+            // 
+            this.MasterCoilPDFLabel.AutoSize = true;
+            this.MasterCoilPDFLabel.Location = new System.Drawing.Point(306, 215);
+            this.MasterCoilPDFLabel.Name = "MasterCoilPDFLabel";
+            this.MasterCoilPDFLabel.Size = new System.Drawing.Size(150, 13);
+            this.MasterCoilPDFLabel.TabIndex = 15;
+            this.MasterCoilPDFLabel.Text = "Generate PDF for Master Coils";
+            // 
+            // CreateMasterCoilPDFButton
+            // 
+            this.CreateMasterCoilPDFButton.Location = new System.Drawing.Point(309, 231);
+            this.CreateMasterCoilPDFButton.Name = "CreateMasterCoilPDFButton";
+            this.CreateMasterCoilPDFButton.Size = new System.Drawing.Size(100, 52);
+            this.CreateMasterCoilPDFButton.TabIndex = 16;
+            this.CreateMasterCoilPDFButton.Text = "Create PDF";
+            this.CreateMasterCoilPDFButton.UseVisualStyleBackColor = true;
+            this.CreateMasterCoilPDFButton.Click += new System.EventHandler(this.CreateMasterCoilPDFButton_Click);
             // 
             // LabelPrinter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(538, 257);
+            this.ClientSize = new System.Drawing.Size(538, 316);
+            this.Controls.Add(this.CreateMasterCoilPDFButton);
+            this.Controls.Add(this.MasterCoilPDFLabel);
+            this.Controls.Add(this.CreatePDFLabel);
+            this.Controls.Add(this.CreatePDFButtonForRackLocation);
+            this.Controls.Add(this.SizeLabel);
+            this.Controls.Add(this.sizeText);
             this.Controls.Add(this.createPDFColorList);
             this.Controls.Add(this.createPDFNameText);
             this.Controls.Add(this.createPDFName);
@@ -229,6 +296,13 @@ namespace LabelReprint
         private System.Windows.Forms.Label createPDFName;
         private System.Windows.Forms.TextBox createPDFNameText;
         private System.Windows.Forms.ComboBox createPDFColorList;
+        private TextBox sizeText;
+        private Label SizeLabel;
+        private Button CreatePDFButtonForRackLocation;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private Label CreatePDFLabel;
+        private Label MasterCoilPDFLabel;
+        private Button CreateMasterCoilPDFButton;
     }
 }
 
